@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
+use Illuminate\Session\Store;
+use Intervention\Image\Facades\Image as Image;
 
 class UserController extends Controller
 {
+    private $user;
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.users.create");
     }
 
     /**
@@ -34,9 +44,31 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        //
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->email);
+        $user->type = $request->type;
+
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
+            $user->avatar_url = $filename;
+
+        }
+
+
+        $user->save();
+
+        session()->flash("success", "Insert Successfully");
+        return redirect(route("users.index"));
     }
 
     /**
@@ -58,7 +90,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -68,9 +100,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUser $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        if($request->password) {
+            $user->password = bcrypt($request->email);
+        }
+        $user->type = $request->type;
+
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
+            $user->avatar_url = $filename;
+        }
+
+
+        $user->save();
+
+        session()->flash("success", "Update Successfully");
+        return back();
     }
 
     /**
@@ -83,6 +138,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
+        session()->flash("success", "Delete successfully");
         return back();
     }
 }

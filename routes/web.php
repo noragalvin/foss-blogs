@@ -18,6 +18,5 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'manage'], function() {
     Route::get('/', 'AdminController@index');
-    Route::get('/users', 'UserController@index');
-    Route::delete('/users/{id}', 'UserController@destroy');
+    Route::resource("users", "UserController");
 });

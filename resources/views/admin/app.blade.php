@@ -48,9 +48,9 @@
             </a>
           </li>
           <li>
-            <a href="./icons.html">
+            <a href="{{ route("users.index") }}">
               <i class="nc-icon nc-diamond"></i>
-              <p>Icons</p>
+              <p>Manage Users</p>
             </a>
           </li>
           <li>
