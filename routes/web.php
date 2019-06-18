@@ -19,4 +19,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'manage'], function() {
     Route::get('/', 'AdminController@index');
     Route::resource("users", "UserController");
+
 });
