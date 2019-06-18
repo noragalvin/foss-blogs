@@ -1,1 +1,1 @@
-"web: vendor/bin/foss-blogs public/" 
+web: vendor/bin/foss-blogs public/
