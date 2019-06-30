@@ -23,6 +23,6 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt("123456"), // 123456
         'type' => rand(0, 1),
-//        'avatar_url' => $faker->imageUrl
+        'avatar_url' => $faker->imageUrl
     ];
 });

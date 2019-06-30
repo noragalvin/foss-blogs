@@ -62,6 +62,9 @@
                                         <td>
                                             {{ $user->type }}
                                         </td>
+                                        <td class="d-none">
+                                            {{ $user->avatar_url }}
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-secondary btn-edit"
@@ -70,6 +73,7 @@
                                                 <button type="button" class="btn btn-secondary" data-toggle="modal"
                                                         data-target="#modalDelete{{$user->id}}"><i
                                                             class="nc-icon nc-simple-remove"></i></button>
+
                                                 <!-- Modal -->
                                                 <div id="modalDelete{{$user->id}}" class="modal fade" role="dialog">
                                                     <div class="modal-dialog">
@@ -117,7 +121,7 @@
     <!-- Modal edit -->
     <div class="modal" id="editModal" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
         <div class="modal-dialog" role="document">
-            <form id="editForm" method="POST">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PUT') }}
                 <div class="modal-content">
@@ -125,58 +129,69 @@
                         <h5 class="modal-title" id="editModalLabel">Update User</h5>
                     </div>
                     <div class="modal-body">
+
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                <div class="card card-user">
+                                    <div class="card-body">
+                                        <div class="author">
+                                            <a href="#">
+                                                <img id="avatar" class="avatar border-gray" src="" alt="...">
+                                                <input type="file" class="d-none" name="file" id="file">
+                                            </a>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email address</label>
+                                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>First Name</label>
+                                                    <input type="text" name="first_name" class="form-control" placeholder="Company">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-1">
+                                                <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" name="password" class="form-control" placeholder="******">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-1">
+                                                <div class="form-group">
+                                                    <label>Confirmation Password</label>
+                                                    <input type="password" name="password_confirmation" class="form-control" placeholder="******">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Type</label>
+                                                    <select name="type" class="form-control">
+                                                        <option value="0">Admin</option>
+                                                        <option value="1">User</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input type="text" name="first_name" class="form-control" placeholder="Company">
-                                </div>
-                            </div>
-                            <div class="col-md-6 pl-1">
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="******">
-                                </div>
-                            </div>
-                            <div class="col-md-6 pl-1">
-                                <div class="form-group">
-                                    <label>Confirmation Password</label>
-                                    <input type="password" name="password_confirmation" class="form-control" placeholder="******">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Type</label>
-                                    <select name="type" class="form-control">
-                                        <option value="0">Admin</option>
-                                        <option value="1">User</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-12">--}}
-{{--                                <input type="file" name="file" class="form-control">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -205,11 +220,33 @@
             $('#editForm input[name="last_name"]').val(col[2].innerText.trim());
             $('#editForm input[name="email"]').val(col[4].innerText);
             $('#editForm select[name="type"]').val($(col[5]).get(0).innerText === "User" ? 1 : 0);
+            $('#editForm #avatar').attr("src", `${col[6].innerText.trim()}`)
 
             $('#editModal').modal({
                 backdrop: 'static',
                 show: true
             });
+        });
+
+        $("#avatar").click(function(e) {
+            e.preventDefault();
+            $("#file").trigger("click");
+        })
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#file").change(function() {
+            readURL(this);
         });
     </script>
 @endpush

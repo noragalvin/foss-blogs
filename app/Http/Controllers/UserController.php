@@ -60,7 +60,7 @@ class UserController extends Controller
             $filename = time().'.'.$avatar->getClientOriginalExtension();
 
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
-            $user->avatar_url = $filename;
+            $user->avatar_url = '/uploads/users_avatars/' . $filename;
 
         }
 
@@ -118,7 +118,7 @@ class UserController extends Controller
             $filename = time().'.'.$avatar->getClientOriginalExtension();
 
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
-            $user->avatar_url = $filename;
+            $user->avatar_url = '/uploads/users_avatars/' . $filename;
         }
 
 

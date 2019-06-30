@@ -60,11 +60,11 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-4 offset-3">--}}
-{{--                                    <input type="file" name="file" class="form-control">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="row">
+                                <div class="col-md-4 offset-3">
+                                    <input type="file" name="file" class="form-control">
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="update ml-auto mr-auto">
                                     <button type="submit" class="btn btn-primary btn-round">Add</button>
