@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ClientController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('login','LoginController@getLogin');
-Route::post('login','LoginController@postLogin');
+Route::get('login','LoginController@getLogin')->name('getLogin');
+Route::post('login','LoginController@postLogin')->name('postLogin');
+Route::get('register', 'LoginController@getRegister')->name('getRegister');
+Route::post('register', 'LoginController@postRegister')->name('postRegister');
+
 Route::group(['prefix' => 'manage'], function() {
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource("users", "UserController");
 
 });
