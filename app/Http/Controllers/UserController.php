@@ -107,7 +107,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         if($request->password) {
-            $user->password = bcrypt($request->email);
+            $user->password = bcrypt($request->password);
         }
         $user->type = $request->type;
 

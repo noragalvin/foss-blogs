@@ -53,13 +53,13 @@
               <p>Manage Users</p>
             </a>
           </li>
-{{--          <li>--}}
-{{--            <a href="./map.html">--}}
-{{--              <i class="nc-icon nc-pin-3"></i>--}}
-{{--              <p>Maps</p>--}}
-{{--            </a>--}}
-{{--          </li>--}}
-{{--          <li>--}}
+          <li>
+            <a href="{{ route("categories.index") }}">
+              <i class="nc-icon nc-pin-3"></i>
+              <p>Manage Categories</p>
+            </a>
+          </li>
+          <li>
 {{--            <a href="./notifications.html">--}}
 {{--              <i class="nc-icon nc-bell-55"></i>--}}
 {{--              <p>Notifications</p>--}}
@@ -157,12 +157,6 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <!-- <div class="panel-header panel-header-lg">
-
-  <canvas id="bigDashboardChart"></canvas>
-
-
-</div> -->
         @yield('content')
 
       <footer class="footer footer-black  footer-white ">

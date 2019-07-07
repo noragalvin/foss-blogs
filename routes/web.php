@@ -21,5 +21,6 @@ Route::post('register', 'LoginController@postRegister')->name('postRegister');
 Route::group(['prefix' => 'manage'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource("users", "UserController");
-
+    Route::resource("categories", "CategoryController");
+    Route::resource("posts", "PostController");
 });
