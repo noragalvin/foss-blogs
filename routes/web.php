@@ -17,6 +17,8 @@ Route::get('login','LoginController@getLogin')->name('getLogin');
 Route::post('login','LoginController@postLogin')->name('postLogin');
 Route::get('register', 'LoginController@getRegister')->name('getRegister');
 Route::post('register', 'LoginController@postRegister')->name('postRegister');
+Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
+
 
 Route::group(['prefix' => 'manage'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');

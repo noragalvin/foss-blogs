@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function getDefaultType() {
         return 1;
     }
+
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 }

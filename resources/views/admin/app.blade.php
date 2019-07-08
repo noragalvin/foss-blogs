@@ -59,7 +59,7 @@
               <p>Manage Categories</p>
             </a>
           </li>
-          <li>
+{{--          <li>--}}
 {{--            <a href="./notifications.html">--}}
 {{--              <i class="nc-icon nc-bell-55"></i>--}}
 {{--              <p>Notifications</p>--}}

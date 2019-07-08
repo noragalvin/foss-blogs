@@ -19,6 +19,7 @@ class ProductsTableSeeder extends Seeder
                 "user_id" => rand(1,10),
                 "title" => $faker->realText(10),
                 "content" => $faker->realText(200),
+                'short_description' => $faker->realText(20),
                 "image_url" => $faker->imageUrl
             ]);
         }
