@@ -49,13 +49,10 @@
                                             <hr>
                                             <div class="card-footer">
                                                 <div class="author">
-                                                    <a href="#pablo">
+                                                    <a href="{{ route('singlePost', $post->id) }}">
                                                         <img src="{{ $post->user->avatar_url }}" alt="..." class="avatar img-raised">
-                                                        <span>{{ $post->user->name }}</span>
+                                                        <span>{{ $post->user->fullName }}</span>
                                                     </a>
-                                                </div>
-                                                <div class="stats">
-                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 5 min read
                                                 </div>
                                             </div>
                                         </div>
