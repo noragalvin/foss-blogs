@@ -44,7 +44,7 @@
                                                 <div class="author">
                                                     <a href="#pablo">
                                                         <img src="{{ $post->user->avatar_url }}" alt="..." class="avatar img-raised">
-                                                        <span>{{ $post->user->name }}</span>
+                                                        <span>{{ $post->user->full_name }}</span>
                                                     </a>
                                                 </div>
                                                 <div class="stats">

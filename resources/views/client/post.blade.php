@@ -45,7 +45,7 @@
                                         </div>
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">{{ $post->user->name }}</h4>
+                                        <h4 class="media-heading">{{ $post->user->full_name }}</h4>
                                     </div>
                                 </div>
                             </div>
