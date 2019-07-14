@@ -34,14 +34,14 @@
                                 <div class="col-md-4">
                                     <div class="card card-blog">
                                         <div class="card-image">
-                                            <a href="#pablo">
+                                            <a href="{{ route('singlePost', $post->id) }}">
                                                 <img class="img" src="{{ $post->image_url }}">
                                             </a>
                                         </div>
                                         <div class="card-body">
                                             <h6 class="card-category text-info">{{ $category->name }}</h6>
                                             <h5 class="card-title">
-                                                <a href="#pablo">{{ $post->title  }}</a>
+                                                <a href="{{ route('singlePost', $post->id) }}">{{ $post->title  }}</a>
                                             </h5>
                                             <p class="card-description">
                                                 {{ $post->short_description }}
