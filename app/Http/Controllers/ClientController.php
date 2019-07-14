@@ -25,4 +25,11 @@ class ClientController extends Controller
         $posts = Post::where("category_id", $id)->paginate(9);
         return view('client.category_posts', compact('category', 'posts'));
     }
+
+    public function singlePost($id, Request $request) {
+        $post = Post::find($id);
+        $post->load('user');
+        $post->load('category');
+        return view('client.post', compact('post'));
+    }
 }

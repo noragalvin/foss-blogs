@@ -19,7 +19,6 @@
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto text-center title">
                             <h2>{{ $category->name }}</h2>
-{{--                            <h3 class="title-uppercase"><small>Written by designers for designers</small></h3>--}}
                         </div>
                     </div>
                     <div class="article">
@@ -28,14 +27,14 @@
                             <div class="col-md-4">
                                     <div class="card card-blog">
                                         <div class="card-image">
-                                            <a href="#pablo">
+                                            <a href="{{ route('singlePost', $post->id) }}">
                                                 <img class="img" src="{{ $post->image_url }}">
                                             </a>
                                         </div>
                                         <div class="card-body">
                                             <h6 class="card-category text-info">{{ $category->name }}</h6>
                                             <h5 class="card-title">
-                                                <a href="#pablo">{{ $post->title  }}</a>
+                                                <a href="{{ route('singlePost', $post->id) }}">{{ $post->title  }}</a>
                                             </h5>
                                             <p class="card-description">
                                                 {{ $post->short_description }}

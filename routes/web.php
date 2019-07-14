@@ -18,6 +18,7 @@ Route::post('login','LoginController@postLogin')->name('postLogin');
 Route::get('register', 'LoginController@getRegister')->name('getRegister');
 Route::post('register', 'LoginController@postRegister')->name('postRegister');
 Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
+Route::get('post/{id}', 'ClientController@singlePost')->name('singlePost');
 
 
 Route::group(['prefix' => 'manage'], function() {

@@ -112,5 +112,5 @@
 
 <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('client/assets/js/paper-kit.js?v=2.1.0') }}"></script>
-
+@stack('scripts')
 </html>

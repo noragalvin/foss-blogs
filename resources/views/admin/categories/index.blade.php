@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a class="btn btn-primary" href="{{ route("users.create") }}">
-                            Add User
+                        <a class="btn btn-primary" href="{{ route("categories.create") }}">
+                            Add Category
                         </a>
                         <h4 class="card-title"> Manage Categories</h4>
                     </div>
@@ -32,6 +32,9 @@
                                     Name
                                 </th>
                                 <th>
+                                    Description
+                                </th>
+                                <th>
                                     Options
                                 </th>
                                 </thead>
@@ -45,9 +48,12 @@
                                             {{ $category->name }}
                                         </td>
                                         <td>
+                                            {{ $category->description }}
+                                        </td>
+                                        <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-secondary btn-edit"
-                                                        data-href="{{ route("users.update", ["id" => $category->id]) }}"><i
+                                                        data-href="{{ route("categories.update", ["id" => $category->id]) }}"><i
                                                             class="nc-icon nc-scissors"></i></button>
                                                 <button type="button" class="btn btn-secondary" data-toggle="modal"
                                                         data-target="#modalDelete{{$category->id}}"><i
@@ -69,7 +75,7 @@
                                                                 <p>Bạn có chắc chắn muốn xóa?</p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form action="{{ route('users.destroy', ['id' => $category->id]) }}"
+                                                                <form action="{{ route('categories.destroy', ['id' => $category->id]) }}"
                                                                       method="post">
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
@@ -105,72 +111,25 @@
                 {{ method_field('PUT') }}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Update User</h5>
+                        <h5 class="modal-title" id="editModalLabel">Update Category</h5>
                     </div>
                     <div class="modal-body">
-
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card card-user">
-                                    <div class="card-body">
-                                        <div class="author">
-                                            <a href="#">
-                                                <img id="avatar" class="avatar border-gray" src="" alt="...">
-                                                <input type="file" class="d-none" name="file" id="file">
-                                            </a>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" name="email" class="form-control" placeholder="Email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" name="first_name" class="form-control" placeholder="Company">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 pl-1">
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" name="password" class="form-control" placeholder="******">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 pl-1">
-                                                <div class="form-group">
-                                                    <label>Confirmation Password</label>
-                                                    <input type="password" name="password_confirmation" class="form-control" placeholder="******">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Type</label>
-                                                    <select name="type" class="form-control">
-                                                        <option value="0">Admin</option>
-                                                        <option value="1">User</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Category Name">
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" name="description" class="form-control" placeholder="Description">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -195,11 +154,8 @@
             var col = row.find('td');
             console.log(row);
             console.log(col);
-            $('#editForm input[name="first_name"]').val(col[1].innerText.trim());
-            $('#editForm input[name="last_name"]').val(col[2].innerText.trim());
-            $('#editForm input[name="email"]').val(col[4].innerText);
-            $('#editForm select[name="type"]').val($(col[5]).get(0).innerText === "User" ? 1 : 0);
-            $('#editForm #avatar').attr("src", `${col[6].innerText.trim()}`)
+            $('#editForm input[name="name"]').val(col[1].innerText.trim());
+            $('#editForm input[name="description"]').val(col[2].innerText.trim());
 
             $('#editModal').modal({
                 backdrop: 'static',
