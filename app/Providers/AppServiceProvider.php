@@ -26,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \URL::forceScheme('https');
+        if(env('MODE') == 'production') {
+            \URL::forceScheme('https');
+        }
         Schema::defaultStringLength(191);
 
         $categories = Category::all();
