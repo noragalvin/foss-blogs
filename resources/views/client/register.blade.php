@@ -28,9 +28,6 @@
                                 @include('common.errors')
                                 <button type="submit" class="btn btn-danger btn-block btn-round">Register</button>
                             </form>
-                            <div class="forgot">
-                                <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
-                            </div>
                         </div>
                     </div>
                 </div>

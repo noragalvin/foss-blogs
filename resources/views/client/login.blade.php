@@ -27,11 +27,8 @@
                                 <label>Password</label>
                                 <input name="password" type="password" class="form-control no-border" placeholder="Password">
                                 @include("common.errors")
-                                <button class="btn btn-danger btn-block btn-round">Register</button>
+                                <button class="btn btn-danger btn-block btn-round">Login</button>
                             </form>
-                            <div class="forgot">
-                                <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
-                            </div>
                         </div>
                     </div>
                 </div>

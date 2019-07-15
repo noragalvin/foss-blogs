@@ -17,11 +17,15 @@ Route::get('login','LoginController@getLogin')->name('getLogin');
 Route::post('login','LoginController@postLogin')->name('postLogin');
 Route::get('register', 'LoginController@getRegister')->name('getRegister');
 Route::post('register', 'LoginController@postRegister')->name('postRegister');
+Route::get('logout', 'LoginController@getLogout')->name('getLogout');
+
+
+
 Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
 Route::get('post/{id}', 'ClientController@singlePost')->name('singlePost');
 
 
-Route::group(['prefix' => 'manage'], function() {
+Route::group(['prefix' => 'manage', 'middleware' => 'admin'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::resource("users", "UserController");
     Route::resource("categories", "CategoryController");

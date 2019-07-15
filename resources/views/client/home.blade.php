@@ -49,7 +49,7 @@
                                             <hr>
                                             <div class="card-footer">
                                                 <div class="author">
-                                                    <a href="{{ route('singlePost', $post->id) }}">
+                                                    <a href="">
                                                         <img src="{{ $post->user->avatar_url }}" alt="..." class="avatar img-raised">
                                                         <span>{{ $post->user->fullName }}</span>
                                                     </a>

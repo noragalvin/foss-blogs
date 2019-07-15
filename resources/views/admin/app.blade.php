@@ -59,12 +59,12 @@
               <p>Manage Categories</p>
             </a>
           </li>
-{{--          <li>--}}
-{{--            <a href="./notifications.html">--}}
-{{--              <i class="nc-icon nc-bell-55"></i>--}}
-{{--              <p>Notifications</p>--}}
-{{--            </a>--}}
-{{--          </li>--}}
+          <li>
+            <a href="{{ route('getLogout') }}">
+              <i class="nc-icon nc-bell-55"></i>
+              <p>Logout </p>
+            </a>
+          </li>
 {{--          <li>--}}
 {{--            <a href="./user.html">--}}
 {{--              <i class="nc-icon nc-single-02"></i>--}}
