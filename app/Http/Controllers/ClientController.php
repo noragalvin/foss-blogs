@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\User;
+use Validator;
 use Illuminate\Http\Request;
 use DB;
 
@@ -31,5 +33,25 @@ class ClientController extends Controller
         $post->load('user');
         $post->load('category');
         return view('client.post', compact('post'));
+    }
+
+    public function profile($id, Request $request) {
+        $user = User::find($id);
+        return view('client.profile', compact('user'));
+    }
+
+    public function updateProfile($id, Request $request) {
+        $rules = [
+            "first_name" => 'required',
+            "last_name" => "required",
+            "email" => "required"
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+
+        }
+        $user = User::find($id);
+
+        return back();
     }
 }

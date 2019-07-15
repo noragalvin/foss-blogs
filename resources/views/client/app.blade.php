@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('client/assets/img/apple-icon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Paper Kit 2 PRO by Creative Tim</title>
+    <title>Blogs</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -45,16 +45,21 @@
 
                     </ul>
                 </li>
-                @if(Auth::user())
+                    @if(Auth::user())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->fullName }}</a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                            <a class="dropdown-item" href="profile.html"><i class="nc-icon nc-single-02"></i>&nbsp; Profile</a>
-                            <a class="dropdown-item" href="blog-posts.html"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; My posts</a>
+                            <a class="dropdown-item" href="{{ route('getProfile', Auth::user()->id) }}"><i class="nc-icon nc-single-02"></i>&nbsp; Profile</a>
+                            <a class="dropdown-item" href="blog-posts.html"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; My Posts</a>
                             <a class="dropdown-item" href="{{ route('getLogout') }}"><i class="nc-icon nc-bookmark-2"></i>&nbsp; Logout</a>
                         </ul>
                     </li>
-                @else
+                    <li class="nav-item">
+                        <a class="btn btn-round btn-danger" href="{{ route('getRegister') }}">
+                            <i class="nc-icon nc-world-2"></i> Add Post
+                        </a>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="btn btn-round btn-danger" href="{{ route('getRegister') }}">
                             <i class="nc-icon nc-cart-simple"></i> Register

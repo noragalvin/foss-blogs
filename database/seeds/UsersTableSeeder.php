@@ -21,5 +21,21 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt("123456"), // 123456
             'type' => 0
         ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Ngoc',
+            'last_name' => 'Tran',
+            'email' => 'ngoc@gmail.com',
+            'password' => bcrypt("123456"), // 123456
+            'type' => 0
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Binh',
+            'last_name' => 'Binh',
+            'email' => 'binh@gmail.com',
+            'password' => bcrypt("123456"), // 123456
+            'type' => 1
+        ]);
     }
 }

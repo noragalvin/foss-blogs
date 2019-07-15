@@ -20,6 +20,8 @@ Route::post('register', 'LoginController@postRegister')->name('postRegister');
 Route::get('logout', 'LoginController@getLogout')->name('getLogout');
 
 
+Route::get('profile/{id}', 'ClientController@profile')->name('getProfile');
+Route::post('profile/{id}', 'ClientController@updateProfile')->name('postProfile');
 
 Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
 Route::get('post/{id}', 'ClientController@singlePost')->name('singlePost');
