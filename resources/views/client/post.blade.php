@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-8 ml-auto mr-auto">
                         <div class="article-content">
-                            {{ $post->content }}
+                            {{!! $post->content !!}}
                         </div>
                         <br/>
                         <hr>
@@ -49,12 +49,49 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="row">
-                                <div class="comments media-area">
+                                <div class="comments media-area" style="width: 100%">
                                     <h3 class="text-center">Comments</h3>
+                                    @foreach($post->comments as $key => $comment)
+                                        <div class="media">
+                                            <a class="pull-left" href="#paper-kit">
+                                                <div class="avatar">
+                                                    <img class="media-object" alt="64x64" src="{{ $comment->user->avatar_url }}">
+                                                </div>
+                                            </a>
+                                            <div class="media-body">
+                                                <h5 class="media-heading">{{ $comment->user->fullName }}</h5>
+                                                <div class="pull-right">
+                                                    <h6 class="text-muted">{{ $comment->created_at }}</h6>
+                                                    <!-- <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a> -->
+
+                                                </div>
+                                                <p>{{ $comment->content }}</p>
+                                            </div>
+                                        </div> <!-- end media -->
+                                    @endforeach
+                                    @if(Auth::user())
                                     <div class="media">
-                                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
+                                        <a class="pull-left" href="#paper-kit">
+                                            <div class="avatar">
+                                                <img class="media-object" alt="64x64" src="{{ Auth::user()->avatar_url }}">
+                                            </div>
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{ Auth::user()->fullName }}</h5>
+                                            <div class="input">
+                                                <form class="register-form" action="{{ route('comments.store') }}" method="POST">
+                                                    @csrf
+                                                    <input name="content" style="height: 60px; background-color: #787878; color: #fff" type="text" class="form-control" placeholder="Writing comment....">
+                                                    <input type="hidden" name="post_id" value="{{ $post->id }}" class="form-control" >
+                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" class="form-control" >
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div> <!-- end media -->
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -26,6 +26,8 @@ Route::post('profile/{id}', 'ClientController@updateProfile')->name('postProfile
 Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
 Route::get('post/{id}', 'ClientController@singlePost')->name('singlePost');
 
+Route::resource("comments", "CommentController");
+
 
 Route::group(['prefix' => 'manage', 'middleware' => 'admin'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');

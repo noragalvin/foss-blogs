@@ -32,6 +32,7 @@ class ClientController extends Controller
         $post = Post::find($id);
         $post->load('user');
         $post->load('category');
+        $post->load('comments');
         return view('client.post', compact('post'));
     }
 
