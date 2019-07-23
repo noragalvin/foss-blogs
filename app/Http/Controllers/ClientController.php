@@ -55,4 +55,10 @@ class ClientController extends Controller
 
         return back();
     }
+
+    public function userPosts($id, Request $request) {
+        $posts = Post::where("user_id", $id)->paginate(9);
+        $user = User::find($id);
+        return view('client.user_posts', compact('user', 'posts'));
+    }
 }

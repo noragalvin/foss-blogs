@@ -50,7 +50,7 @@
                         <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->fullName }}</a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                             <a class="dropdown-item" href="{{ route('getProfile', Auth::user()->id) }}"><i class="nc-icon nc-single-02"></i>&nbsp; Profile</a>
-                            <a class="dropdown-item" href="blog-posts.html"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; My Posts</a>
+                            <a class="dropdown-item" href="{{ route('getUserPosts', Auth::user()->id) }}"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; My Posts</a>
                             <a class="dropdown-item" href="{{ route('getLogout') }}"><i class="nc-icon nc-bookmark-2"></i>&nbsp; Logout</a>
                         </ul>
                     </li>

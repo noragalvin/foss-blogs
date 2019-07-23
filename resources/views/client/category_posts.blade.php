@@ -42,7 +42,7 @@
                                             <hr>
                                             <div class="card-footer">
                                                 <div class="author">
-                                                    <a href="#pablo">
+                                                    <a href="{{ route('getUserPosts', $post->user->id) }}">
                                                         <img src="{{ $post->user->avatar_url }}" alt="..." class="avatar img-raised">
                                                         <span>{{ $post->user->fullName }}</span>
                                                     </a>
@@ -61,11 +61,8 @@
                     <hr />
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="pull-left">
-                                <button class="btn btn-link btn-default btn-move-left btn-sm"> <i class="fa fa-angle-left"></i> Older Posts</button>
-                            </div>
-                            <div class="pull-right">
-                                <button class="btn btn-link btn-default btn-move-right btn-sm">Newer Posts  <i class="fa fa-angle-right"></i></button>
+                            <div class="d-flex justify-content-center">
+                                {{ $posts->links() }}
                             </div>
                         </div>
                     </div>

@@ -39,7 +39,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="media">
-                                    <a class="pull-left" href="#paper-kit">
+                                    <a class="pull-left" href="{{ route('getUserPosts', $post->user->id) }}">
                                         <div class="avatar big-avatar">
                                             <img class="media-object" alt="64x64" src="{{ $post->user->avatar_url }}">
                                         </div>
