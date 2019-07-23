@@ -22,7 +22,7 @@
 
 </head>
 <body class="full-screen login">
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent nav-down" color-on-scroll="200">
+<nav class="navbar navbar-expand-lg fixed-top bg-danger nav-down">
     <div class="container">
         <div class="navbar-translate">
             <div class="navbar-header">
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-round btn-danger" href="{{ route('getRegister') }}">
+                        <a class="btn btn-round btn-danger" href="{{ route('addPost') }}">
                             <i class="nc-icon nc-world-2"></i> Add Post
                         </a>
                     </li>

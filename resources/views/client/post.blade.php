@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-8 ml-auto mr-auto">
                         <div class="article-content">
-                            {{!! $post->content !!}}
+                            {!! $post->content !!}
                         </div>
                         <br/>
                         <hr>

@@ -26,6 +26,8 @@ Route::post('profile/{id}', 'ClientController@updateProfile')->name('postProfile
 Route::get('category/{id}', 'ClientController@postsByCategory')->name('postsByCategory');
 Route::get('post/{id}', 'ClientController@singlePost')->name('singlePost');
 Route::get('user/{id}/posts', 'ClientController@userPosts')->name('getUserPosts');
+Route::get('add-post', 'ClientController@addPost')->name('addPost');
+Route::post('store-post', 'ClientController@postPost')->name('postPost');
 
 Route::resource("comments", "CommentController");
 

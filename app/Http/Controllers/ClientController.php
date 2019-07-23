@@ -8,6 +8,8 @@ use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+use Intervention\Image\Facades\Image as Image;
 
 class ClientController extends Controller
 {
@@ -60,5 +62,31 @@ class ClientController extends Controller
         $posts = Post::where("user_id", $id)->paginate(9);
         $user = User::find($id);
         return view('client.user_posts', compact('user', 'posts'));
+    }
+
+    public function addPost(Request $request) {
+        $categories = Category::all();
+        return view('client.add_post', compact("categories"));
+    }
+
+    public function postPost(Request $request) {
+        $post = new Post();
+        $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->short_description = $request->short_description;
+        $post->content = $request->content;
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->save(public_path('/uploads/posts/'.$filename));
+            $post->image_url = '/uploads/posts/' . $filename;
+
+        }
+        $post->save();
+        return redirect()->route('getUserPosts', Auth::user()->id);
     }
 }
