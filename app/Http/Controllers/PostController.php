@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Charts\SampleChart;
 
 class PostController extends Controller
 {
