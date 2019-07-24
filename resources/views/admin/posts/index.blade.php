@@ -133,8 +133,15 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editModalLabel">Update Category</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+                        <div class="author text-center">
+                            <a href="#">
+                                <img width="300" height="auto" id="avatar" class="avatar border-gray" src="" alt="...">
+                                <input type="file" class="d-none" name="file" id="file">
+                            </a>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -166,7 +173,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form>
@@ -176,6 +183,12 @@
 @endsection
 
 @push('scripts')
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script>
+
+        // $('.textarea').ckeditor(); // if class is prefered.
+    </script>
     <script>
         // Click edit button
         $('.btn-edit').click(function (e) {
@@ -187,14 +200,16 @@
             var col = row.find('td');
             console.log(row);
             console.log(col);
-            $('#editForm select[name="category_id"]').val(col[1].innerText.trim());
+            $('#editForm select[name="category_id"]').val(col[7].innerText.trim());
             $('#editForm input[name="title"]').val(col[3].innerText.trim());
             $('#editForm input[name="short_description"]').val(col[4].innerText.trim());
-            $('#editForm input[name="content"]').val(col[6].innerText.trim());
-
+            $('#editForm textarea[name="content"]').val(col[6].innerText.trim());
+            $('#editForm textarea[name="content"]').ckeditor(col[6].innerText.trim());
+            $('#editForm #avatar').attr("src", `${col[5].innerText.trim()}`)
             $('#editModal').modal({
                 backdrop: 'static',
-                show: true
+                show: true,
+                keyboard: false
             });
         });
 

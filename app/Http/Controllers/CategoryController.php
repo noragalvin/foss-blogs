@@ -13,9 +13,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('created_at', 'desc');
+        if($request->search) {
+            $categories = $categories->where('name', 'like', '%' . $request->search . '%');
+        }
+        $categories = $categories->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 

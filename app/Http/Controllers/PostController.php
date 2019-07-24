@@ -16,9 +16,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc');
+        if($request->search) {
+            $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
+        }
+        $posts = $posts->paginate(10);
         $posts->load('user');
         $posts->load('category');
         return view("admin.posts.index", compact("posts"));
@@ -43,6 +47,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            "category_id" => 'required',
+            "title" => "required",
+            "content" => "required"
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $post = new Post();
         $post->category_id = $request->category_id;
         $post->user_id = Auth::user()->id;
@@ -93,6 +107,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            "category_id" => 'required',
+            "title" => "required",
+            "content" => "required"
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $post = Post::find($id);
         $post->category_id = $request->category_id;
         $post->user_id = Auth::user()->id;

@@ -22,9 +22,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(10);
+        $users = User::orderBy('created_at', 'desc');
+        if($request->search) {
+            $users = $users->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%')->orWhere('email', 'like', '%' . $request->search . '%');;
+        }
+        $users = $users->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 

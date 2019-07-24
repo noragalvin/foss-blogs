@@ -35,6 +35,14 @@
             </button>
         </div>
         <div class="collapse navbar-collapse">
+            <div class="" id="navigation">
+                <form action="" method="GET">
+                    @csrf
+                    <div class="input-group no-border">
+                        <input style="width: 500px" type="text" value="" name="search" class="form-control" placeholder="Search...">
+                    </div>
+                </form>
+            </div>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">Categories</a>
@@ -80,13 +88,7 @@
 <footer class="footer section-dark">
     <div class="container">
         <div class="row">
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
-                    <li><a href="http://blog.creative-tim.com">Blog</a></li>
-                    <li><a href="https://www.creative-tim.com/license">Licenses</a></li>
-                </ul>
-            </nav>
+
             <div class="credits ml-auto">
 					<span class="copyright">
 						© <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim

@@ -13,20 +13,32 @@ use Intervention\Image\Facades\Image as Image;
 
 class ClientController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 //        DB::enableQueryLog();
         $categories = Category::all();
-        $categories->load("posts");
+        if($request->search) {
+            $search = $request->search;
+            $categories->load(['posts' => function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
+            }]);
+        } else {
+            $categories->load('posts');
+        }
 //        dd(DB::getQueryLog());
         foreach ($categories as $category) {
             $category->posts->load("user");
+
         }
         return view('client.home', compact("categories"));
     }
 
     public function postsByCategory($id, Request $request) {
         $category = Category::find($id);
-        $posts = Post::where("category_id", $id)->paginate(9);
+        $posts = Post::where("category_id", $id);
+        if($request->search) {
+            $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
+        }
+        $posts = $posts->paginate(9);
         return view('client.category_posts', compact('category', 'posts'));
     }
 
@@ -46,20 +58,41 @@ class ClientController extends Controller
     public function updateProfile($id, Request $request) {
         $rules = [
             "first_name" => 'required',
-            "last_name" => "required",
-            "email" => "required"
+            "last_name" => "required"
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
-
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         $user = User::find($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        if($request->password) {
+            $user->password = bcrypt($request->password);
+        }
 
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
+            $user->avatar_url = '/uploads/users_avatars/' . $filename;
+        }
+
+        $user->save();
+
+        session()->flash("success", "Update Successfully");
         return back();
     }
 
     public function userPosts($id, Request $request) {
-        $posts = Post::where("user_id", $id)->paginate(9);
+        $posts = Post::where("user_id", $id);
+        if($request->search) {
+            $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
+        }
+        $posts = $posts->paginate(9);
         $user = User::find($id);
         return view('client.user_posts', compact('user', 'posts'));
     }
