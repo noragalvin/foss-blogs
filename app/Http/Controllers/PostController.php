@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Charts\SampleChart;
 use Auth;
 use Intervention\Image\Facades\Image as Image;
+use Validator;
 
 class PostController extends Controller
 {
