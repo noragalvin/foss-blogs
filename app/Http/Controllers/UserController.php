@@ -65,10 +65,7 @@ class UserController extends Controller
 
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/users_avatars/'.$filename));
             $user->avatar_url = '/uploads/users_avatars/' . $filename;
-
         }
-
-
         $user->save();
 
         session()->flash("success", "Insert Successfully");

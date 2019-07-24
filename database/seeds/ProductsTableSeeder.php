@@ -20,8 +20,16 @@ class ProductsTableSeeder extends Seeder
                 "title" => $faker->realText(10),
                 "content" => $faker->randomHtml(2,3),
                 'short_description' => $faker->realText(20),
-                "image_url" => $faker->imageUrl
+                "image_url" => $faker->imageUrl,
+                "created_at" => $this->getRandomTimestamps()
             ]);
         }
     }
+
+    function getRandomTimestamps($backwardDays = -800)
+	{
+		$backwardCreatedDays = rand($backwardDays, 0);
+
+		return \Carbon\Carbon::now()->addDays($backwardCreatedDays)->addMinutes(rand(0, 60 * 23))->addSeconds(rand(0, 60));
+	}
 }

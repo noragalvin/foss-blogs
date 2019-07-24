@@ -35,15 +35,12 @@
             </button>
         </div>
         <div class="collapse navbar-collapse">
-            <div class="" id="navigation">
-                <form action="" method="GET">
-                    @csrf
-                    <div class="input-group no-border">
-                        <input style="width: 500px" type="text" value="" name="search" class="form-control" placeholder="Search...">
-                    </div>
-                </form>
-            </div>
             <ul class="navbar-nav ml-auto">
+                <form class="form-inline">
+                    @csrf
+                    <input name="search" class="form-control mr-sm-2 no-border" type="text" placeholder="Search">
+                    <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
+                </form>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">Categories</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">

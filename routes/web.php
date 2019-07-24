@@ -34,6 +34,7 @@ Route::resource("comments", "CommentController");
 
 Route::group(['prefix' => 'manage', 'middleware' => 'admin'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/analyst', 'AdminController@analyst')->name('admin.analyst');
     Route::resource("users", "UserController");
     Route::resource("categories", "CategoryController");
     Route::resource("posts", "PostController");
