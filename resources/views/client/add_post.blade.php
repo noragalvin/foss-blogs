@@ -14,7 +14,6 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Category</label>
                                 <select name="category_id" id="" class="form-control">
-                                    <option>Test</option>
                                     @foreach($categories as $key => $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach

@@ -6,6 +6,8 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Charts\SampleChart;
+use Auth;
+use Intervention\Image\Facades\Image as Image;
 
 class PostController extends Controller
 {
@@ -41,7 +43,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->short_description = $request->short_description;
+        $post->content = $request->content;
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->save(public_path('/uploads/posts/'.$filename));
+            $post->image_url = '/uploads/posts/' . $filename;
+        }
+        $post->save();
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -73,9 +91,28 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->short_description = $request->short_description;
+        $post->content = $request->content;
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->save(public_path('/uploads/posts/'.$filename));
+            $post->image_url = '/uploads/posts/' . $filename;
+
+        }
+        $post->save();
+
+        session()->flash("success", "Update Successfully");
+        return back();
     }
 
     /**
@@ -84,8 +121,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        session()->flash("success", "Delete successfully");
+        return back();
     }
 }

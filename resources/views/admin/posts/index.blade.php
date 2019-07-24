@@ -62,6 +62,15 @@
                                         <td>
                                             {{ $post->short_description }}
                                         </td>
+                                        <td class="d-none">
+                                            {{ $post->image_url }}
+                                        </td>
+                                        <td class="d-none">
+                                            {{ $post->content }}
+                                        </td>
+                                        <td class="d-none">
+                                            {{ $post->category_id }}
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-secondary btn-edit"
@@ -129,16 +138,28 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Category Name">
+                                    <label for="exampleInputEmail1">Category</label>
+                                    <select name="category_id" id="" class="form-control">
+                                        @foreach($categories as $key => $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" name="description" class="form-control" placeholder="Description">
+                                    <h6>Title <span class="icon-danger">*</span></h6>
+                                    <input name="title" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                </div>
+                                <div class="form-group">
+                                    <h6>Short Description <span class="icon-danger">*</span></h6>
+                                    <input name="short_description" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                </div>
+                                <div class="form-group">
+                                    <h6>Content</h6>
+                                    <textarea name="content" class="form-control" id="summary-ckeditor" name="summary-ckeditor"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Image URL <span class="icon-danger">*</span></h6>
+                                    <input style="opacity: 1; position:initial" name="file" type="file" class="form-control border-input">
                                 </div>
                             </div>
                         </div>
@@ -166,8 +187,10 @@
             var col = row.find('td');
             console.log(row);
             console.log(col);
-            $('#editForm input[name="name"]').val(col[1].innerText.trim());
-            $('#editForm input[name="description"]').val(col[2].innerText.trim());
+            $('#editForm select[name="category_id"]').val(col[1].innerText.trim());
+            $('#editForm input[name="title"]').val(col[3].innerText.trim());
+            $('#editForm input[name="short_description"]').val(col[4].innerText.trim());
+            $('#editForm input[name="content"]').val(col[6].innerText.trim());
 
             $('#editModal').modal({
                 backdrop: 'static',
