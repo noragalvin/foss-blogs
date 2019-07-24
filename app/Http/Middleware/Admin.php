@@ -17,6 +17,9 @@ class Admin
     public function handle($request, Closure $next)
     {
         if(Auth::user()) {
+            if(Auth::user()->type == 1) {
+                return redirect("/");
+            }
             return $next($request);
         }
         return redirect()->route('getLogin');

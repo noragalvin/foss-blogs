@@ -16,7 +16,6 @@ class AdminController extends Controller
         return redirect()->route('users.index');
     }
 
-
     public function analyst(Request $request) {
         $data = collect([]); // Could also be an array
         $labels = collect([]);

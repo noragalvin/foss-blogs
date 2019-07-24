@@ -31,7 +31,6 @@ Route::post('store-post', 'ClientController@postPost')->name('postPost');
 
 Route::resource("comments", "CommentController");
 
-
 Route::group(['prefix' => 'manage', 'middleware' => 'admin'], function() {
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::get('/analyst', 'AdminController@analyst')->name('admin.analyst');
