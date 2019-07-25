@@ -22,7 +22,9 @@ class ClientController extends Controller
                 $query->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
             }]);
         } else {
-            $categories->load('posts');
+            $categories->load(['posts' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            }]);
         }
 //        dd(DB::getQueryLog());
         foreach ($categories as $category) {
@@ -34,7 +36,7 @@ class ClientController extends Controller
 
     public function postsByCategory($id, Request $request) {
         $category = Category::find($id);
-        $posts = Post::where("category_id", $id);
+        $posts = Post::where("category_id", $id)->orderBy('created_at', 'desc');
         if($request->search) {
             $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
         }

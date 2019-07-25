@@ -39,7 +39,7 @@
                 <form class="form-inline">
                     @csrf
                     <input name="search" class="form-control mr-sm-2 no-border" type="text" placeholder="Search">
-                    <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
+                    <button type="submit" class="btn btn-warning btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
                 </form>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">Categories</a>

@@ -31,14 +31,14 @@ class AdminController extends Controller
                 $full_date = $dt->format("Y-m-d");
                 $date = $dt->format("d/m");
                 $labels->push($date);
-                $data->push(Post::whereRaw('date(created_at) = ?', [date($full_date)])->count());
+                $data->push(Post::withTrashed()->whereRaw('date(created_at) = ?', [date($full_date)])->count());
                 // dd($date);
             }
         } else {
             $labels = collect(['Today', 'Week', 'Month']);
-            $data->push(Post::whereDate('created_at', Carbon::today())->count());
-            $data->push(Post::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count());
-            $data->push(Post::whereBetween('created_at', [Carbon::today()->startOfMonth(), Carbon::today()->endOfMonth()])->count());
+            $data->push(Post::withTrashed()->whereDate('created_at', Carbon::today())->count());
+            $data->push(Post::withTrashed()->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count());
+            $data->push(Post::withTrashed()->whereBetween('created_at', [Carbon::today()->startOfMonth(), Carbon::today()->endOfMonth()])->count());
         }
 
         $chart = new SampleChart;

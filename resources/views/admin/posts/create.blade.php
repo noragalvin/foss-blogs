@@ -29,13 +29,13 @@
                                 <div class="col-md-3 pr-1 offset-3">
                                     <div class="form-group">
                                         <h6>Title <span class="icon-danger">*</span></h6>
-                                        <input name="title" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                        <input name="title" type="text" class="form-control border-input" placeholder="Enter the title here...">
                                     </div>
                                 </div>
                                 <div class="col-md-3 pl-1">
                                     <div class="form-group">
                                         <h6>Short Description <span class="icon-danger">*</span></h6>
-                                        <input name="short_description" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                        <input name="short_description" type="text" class="form-control border-input" placeholder="Enter the short description here...">
                                     </div>
                                 </div>
                             </div>

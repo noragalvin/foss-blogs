@@ -26,7 +26,7 @@ class ProductsTableSeeder extends Seeder
         }
     }
 
-    function getRandomTimestamps($backwardDays = -800)
+    function getRandomTimestamps($backwardDays = -50)
 	{
 		$backwardCreatedDays = rand($backwardDays, 0);
 

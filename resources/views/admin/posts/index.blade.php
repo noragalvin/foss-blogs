@@ -41,6 +41,9 @@
                                     Description
                                 </th>
                                 <th>
+                                    Created At
+                                </th>
+                                <th>
                                     Options
                                 </th>
                                 </thead>
@@ -72,6 +75,9 @@
                                             {{ $post->category_id }}
                                         </td>
                                         <td>
+                                            {{ $post->created_at }}
+                                        </td>
+                                        <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-secondary btn-edit"
                                                         data-href="{{ route("posts.update", ["id" => $post->id]) }}"><i
@@ -90,10 +96,10 @@
                                                                 <button type="button" class="close"
                                                                         data-dismiss="modal">&times;
                                                                 </button>
-                                                                <h4 class="modal-title">Xóa</h4>
+                                                                <h4 class="modal-title">Delete</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Bạn có chắc chắn muốn xóa?</p>
+                                                                <p>Are you sure to delete?</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <form action="{{ route('posts.destroy', ['id' => $post->id]) }}"
@@ -101,9 +107,9 @@
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
                                                                     <button type="button" class="btn btn-default"
-                                                                            data-dismiss="modal">Đóng
+                                                                            data-dismiss="modal">Close
                                                                     </button>
-                                                                    <button type="submit" class="btn btn-danger">Xóa
+                                                                    <button type="submit" class="btn btn-danger">Delete
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -154,11 +160,11 @@
                                 </div>
                                 <div class="form-group">
                                     <h6>Title <span class="icon-danger">*</span></h6>
-                                    <input name="title" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                    <input name="title" type="text" class="form-control border-input" placeholder="Enter the title here...">
                                 </div>
                                 <div class="form-group">
                                     <h6>Short Description <span class="icon-danger">*</span></h6>
-                                    <input name="short_description" type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                                    <input name="short_description" type="text" class="form-control border-input" placeholder="Enter the short description here...">
                                 </div>
                                 <div class="form-group">
                                     <h6>Content</h6>

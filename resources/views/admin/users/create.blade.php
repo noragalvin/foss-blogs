@@ -25,7 +25,7 @@
                                 <div class="col-md-3 pr-1 offset-3">
                                     <div class="form-group">
                                         <label>First Name</label>
-                                        <input type="text" name="first_name" class="form-control" placeholder="Company">
+                                        <input type="text" name="first_name" class="form-control" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="col-md-3 pl-1">

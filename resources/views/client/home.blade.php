@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pull-left">
-                                <button class="btn btn-link btn-default btn-move-right btn-sm">{{ $category->name }}  <i class="fa fa-angle-right"></i></button>
+                                <a href="{{ route('postsByCategory', ['id' => $category->id]) }}" class="btn btn-link btn-default btn-move-right btn-sm">{{ $category->name }}  <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -50,6 +50,9 @@
                                                         <img src="{{ $post->user->avatar_url }}" alt="..." class="avatar img-raised">
                                                         <span>{{ $post->user->fullName }}</span>
                                                     </a>
+                                                </div>
+                                                <div class="stats">
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> {{ time_elapsed_string(strtotime($post->created_at)) }}
                                                 </div>
                                             </div>
                                         </div>

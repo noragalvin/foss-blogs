@@ -13,12 +13,12 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <input name="from_date" type="date" class="form-control datetimepicker">
+                                    <input name="from_date" value="{{ request()->from_date }}" type="date" class="form-control datetimepicker">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <input name="to_date" type="date" class="form-control datetimepicker">
+                                    <input name="to_date" value="{{ request()->to_date }}" type="date" class="form-control datetimepicker">
                                 </div>
                             </div>
                             <div class="col-sm-3">

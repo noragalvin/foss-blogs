@@ -69,10 +69,10 @@
                                                                 <button type="button" class="close"
                                                                         data-dismiss="modal">&times;
                                                                 </button>
-                                                                <h4 class="modal-title">Xóa</h4>
+                                                                <h4 class="modal-title">Delete</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Bạn có chắc chắn muốn xóa?</p>
+                                                                <p>Are you sure to delete?</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <form action="{{ route('categories.destroy', ['id' => $category->id]) }}"
@@ -80,9 +80,9 @@
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
                                                                     <button type="button" class="btn btn-default"
-                                                                            data-dismiss="modal">Đóng
+                                                                            data-dismiss="modal">Close
                                                                     </button>
-                                                                    <button type="submit" class="btn btn-danger">Xóa
+                                                                    <button type="submit" class="btn btn-danger">Delete
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form>

@@ -48,7 +48,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="stats">
-                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 5 min read
+                                                    <i class="fa fa-clock-o" aria-hidden="true"></i> {{ time_elapsed_string(strtotime($post->created_at)) }}
                                                 </div>
                                             </div>
                                         </div>

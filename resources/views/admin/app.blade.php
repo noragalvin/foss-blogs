@@ -62,8 +62,8 @@
           </li>
           <li>
             <a href="{{ route('admin.analyst') }}">
-              <i class="nc-icon nc-bell-55"></i>
-              <p>Analystic </p>
+                <i class="nc-icon nc-tile-56"></i>
+                <p>Analystic </p>
             </a>
           </li>
           <li>
