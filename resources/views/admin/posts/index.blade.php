@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="form-group">
                                     <h6>Content</h6>
-                                    <textarea name="content" class="form-control" id="summary-ckeditor" name="summary-ckeditor"></textarea>
+                                    <textarea name="content" class="form-control" id="summary-ckeditor"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <h6>Image URL <span class="icon-danger">*</span></h6>

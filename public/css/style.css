@@ -1,0 +1,8 @@
+.post-edit-btn {
+    position: absolute;
+    top: 0;
+    background: azure;
+    border-radius: 50%;
+    padding: 2px 5px;
+    right: 0;
+}

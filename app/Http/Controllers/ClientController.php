@@ -31,7 +31,13 @@ class ClientController extends Controller
             $category->posts->load("user");
 
         }
-        return view('client.home', compact("categories"));
+
+        $newest = Post::orderBy("created_at", "desc")->get();
+        // dd($newest);
+        $newest->load("user");
+
+
+        return view('client.home', compact("categories", "newest"));
     }
 
     public function postsByCategory($id, Request $request) {
@@ -41,6 +47,16 @@ class ClientController extends Controller
             $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
         }
         $posts = $posts->paginate(9);
+        if($id == 'newest') {
+            $category = new Category();
+            $category->name = "Newest";
+            $posts = Post::orderBy("created_at", "desc");
+            if($request->search) {
+                $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
+            }
+            $posts = $posts->paginate(9);
+        }
+
         return view('client.category_posts', compact('category', 'posts'));
     }
 
@@ -90,7 +106,7 @@ class ClientController extends Controller
     }
 
     public function userPosts($id, Request $request) {
-        $posts = Post::where("user_id", $id);
+        $posts = Post::where("user_id", $id)->orderBy("created_at", "desc");
         if($request->search) {
             $posts = $posts->where('title', 'like', '%' . $request->search . '%')->orWhere('short_description', 'like', '%' . $request->search . '%');
         }
@@ -123,5 +139,33 @@ class ClientController extends Controller
         }
         $post->save();
         return redirect()->route('getUserPosts', Auth::user()->id);
+    }
+
+    public function postEdit(Request $request, $id) {
+        $post = Post::find($id);
+        $categories = Category::all();
+        return view("client.post_edit", compact("categories", "post"));
+    }
+
+    public function updatePost(Request $request, $id) {
+        $post = Post::find($id);
+        $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->short_description = $request->short_description;
+        $post->content = $request->content;
+        if($request->hasFile('file'))
+        {
+            $avatar = $request->file('file');
+
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->save(public_path('/uploads/posts/'.$filename));
+            $post->image_url = '/uploads/posts/' . $filename;
+
+        }
+        $post->save();
+        session()->flash("success", "Update Successfully");
+        return back();
     }
 }

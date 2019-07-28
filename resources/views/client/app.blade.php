@@ -19,6 +19,8 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ asset('client/assets/css/nucleo-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+
 
 </head>
 <body class="full-screen login">
@@ -102,6 +104,12 @@
 <script src="{{ asset('client/assets/js/jquery-ui-1.12.1.custom.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('client/assets/js/popper.js') }}" type="text/javascript"></script>
 <script src="{{ asset('client/assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+<!--  for fileupload -->
+<script src="{{ asset('client/assets/js/jasny-bootstrap.min.js') }}"></script>
+
+<!--  Plugins for Tags -->
+<script src="{{ asset('client/assets/js/bootstrap-tagsinput.js') }}"></script>
 
 <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('client/assets/js/paper-kit.js?v=2.1.0') }}"></script>

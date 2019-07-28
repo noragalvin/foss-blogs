@@ -24,10 +24,11 @@
                                             <a href="{{ route('singlePost', $post->id) }}">
                                                 <img class="img" src="{{ $post->image_url }}">
                                             </a>
+                                            <a href="{{ route('editPost', $post->id) }}" class="post-edit-btn"><i class="nc-icon nc-scissors"></i></a>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('singlePost', $post->id) }}">{{ $post->title  }}</a>
+                                                <a href="{{ route('singlePost', $post->id) }}">{{ $post->title }}</a>
                                             </h5>
                                             <p class="card-description">
                                                 {{ $post->short_description }}
