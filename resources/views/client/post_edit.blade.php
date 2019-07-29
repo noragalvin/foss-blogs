@@ -66,7 +66,7 @@
 
                     <div class="row buttons-row">
                         <div class="col-md-4 col-sm-4">
-                            <a href="{{ route('deletePost', $post->id) }}" class="btn btn-outline-danger btn-block btn-round">Delete</a>
+                            <button type="button" class="btn btn-outline-danger btn-block btn-round" data-toggle="modal" data-target="#modalDelete">Delete</button>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <a href="{{ route('getUserPosts', Auth::user()->id ) }}" class="btn btn-outline-success btn-block btn-round">Cancel</a>
@@ -76,6 +76,33 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">WARNING!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <div class="left-side">
+                    <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <form action="{{ route('deletePost', $post->id) }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger btn-link">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
