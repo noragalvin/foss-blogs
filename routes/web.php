@@ -30,6 +30,7 @@ Route::get('add-post', 'ClientController@addPost')->name('addPost');
 Route::get("edit-post/{id}", 'ClientController@postEdit')->name('editPost');
 Route::post('store-post', 'ClientController@postPost')->name('postPost');
 Route::put('update-post/{id}', 'ClientController@updatePost')->name('updatePost');
+Route::get('delete-post/{id}', 'ClientController@deletePost')->name('deletePost');
 
 Route::resource("comments", "CommentController");
 

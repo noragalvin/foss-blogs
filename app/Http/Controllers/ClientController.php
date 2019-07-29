@@ -168,4 +168,11 @@ class ClientController extends Controller
         session()->flash("success", "Update Successfully");
         return back();
     }
+
+    public function deletePost($id, Request $request) {
+        $post = Post::find($id);
+        $post->delete();
+        session()->flash("success", "Delete Successfully");
+        return redirect()->route('getUserPosts', Auth::user()->id);
+    }
 }

@@ -65,14 +65,14 @@
                     </div>
 
                     <div class="row buttons-row">
-                        <div class="col-md-2 col-sm-2">
-
+                        <div class="col-md-4 col-sm-4">
+                            <a href="{{ route('deletePost', $post->id) }}" class="btn btn-outline-danger btn-block btn-round">Delete</a>
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            <a href="{{ route('getUserPosts', Auth::user()->id ) }}" class="btn btn-outline-danger btn-block btn-round">Cancel</a>
+                            <a href="{{ route('getUserPosts', Auth::user()->id ) }}" class="btn btn-outline-success btn-block btn-round">Cancel</a>
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            <button type="submit" class="btn btn-outline-primary btn-block btn-round">Update</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-round">Update</button>
                         </div>
                     </div>
                 </form>
