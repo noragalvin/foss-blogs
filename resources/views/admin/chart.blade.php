@@ -13,6 +13,16 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
+                                    <select name="user_id" id="" class="form-control">
+                                        <option selected="true" value="">Select an user</option>
+                                        @foreach($users as $key => $user)
+                                            <option value="{{ $user->id }}" {{ request()->user_id == $user->id ? 'selected' : '' }}>{{ $user->fullName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
                                     <input name="from_date" value="{{ request()->from_date }}" type="date" class="form-control datetimepicker">
                                 </div>
                             </div>
@@ -33,7 +43,7 @@
                 <div class="card-footer ">
                     <hr>
                     <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                        <i class="fa fa-history"></i> Total: {{ $total }}
                     </div>
                 </div>
             </div>

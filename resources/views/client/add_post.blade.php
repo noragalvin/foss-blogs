@@ -5,7 +5,7 @@
     <div class="main">
         <div class="section">
             <div class="container">
-                <h3>Add Product</h3>
+                <h3>Add Post</h3>
                 <form method="POST" action="{{ route('postPost') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
