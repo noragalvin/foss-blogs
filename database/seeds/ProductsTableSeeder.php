@@ -13,9 +13,9 @@ class ProductsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for($i = 0; $i < 50; $i++) {
+        for($i = 0; $i < 200; $i++) {
             DB::table("posts")->insert([
-                "category_id" => rand(1,3),
+                "category_id" => rand(1,7),
                 "user_id" => rand(1,12),
                 "title" => $faker->realText(10),
                 "content" => $faker->randomHtml(2,3),

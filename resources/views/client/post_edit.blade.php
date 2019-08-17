@@ -5,7 +5,7 @@
     <div class="main">
         <div class="section">
             <div class="container">
-                <h3>Add Product</h3>
+                <h3>Edit Post</h3>
                 @if(session()->has("success"))
                     <div class="alert alert-success alert-dismissible fade show">
                         <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
@@ -21,7 +21,7 @@
                     {{ method_field('PUT') }}
                     <div class="row">
                         <div class="col-md-5 col-sm-5">
-                            <h6>Product Image</h6>
+                            <h6>Post Image</h6>
                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                               <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
                                 <img src="{{ $post->image_url }}" alt="...">

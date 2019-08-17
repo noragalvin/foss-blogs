@@ -25,5 +25,25 @@ class CategoriesTableSeeder extends Seeder
             "name" => "Technology",
             "description" => "Technology is the power"
         ]);
+
+        DB::table("categories")->insert([
+            "name" => "Startups",
+            "description" => "Startups is the power"
+        ]);
+
+        DB::table("categories")->insert([
+            "name" => "Elementals",
+            "description" => "Elementals is the power"
+        ]);
+
+        DB::table("categories")->insert([
+            "name" => "Art",
+            "description" => "Art is the power"
+        ]);
+
+        DB::table("categories")->insert([
+            "name" => "Gaming",
+            "description" => "Gaming is the power"
+        ]);
     }
 }
